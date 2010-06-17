@@ -20,9 +20,9 @@
 // Takes a string of the form "x,y"
 - (id)initWithString:(NSString *)posString;
 
--(NSString *)toString;
+-(NSString *)description;
 
-+(NSString *)toStringForX: (int)x Y:(int)y;
++(NSString *)descriptionForX: (int)x Y:(int)y;
 
 - (BOOL) isLegalPosition;
 
@@ -32,7 +32,7 @@
 
 - (void) placeCoin;
 
-@property(readonly) int x;
-@property(readonly) int y;
+- (int)x;
+- (int)y;
 
 @end

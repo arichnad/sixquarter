@@ -11,8 +11,8 @@
 
 @implementation Position
 
-@synthesize x;
-@synthesize y;
+- (int)x {return x;}
+- (int)y {return y;}
 
 - (id)initWithPositionX:(int)newX Y:(int)newY
 {
@@ -34,12 +34,12 @@
 	return self;
 }
 
--(NSString *)toString
+-(NSString *)description
 {
 	return [NSString stringWithFormat:@"%d,%d", x, y];
 }
 
-+(NSString *)toStringForX: (int)x Y:(int)y
++(NSString *)descriptionForX: (int)x Y:(int)y
 {
 	return [NSString stringWithFormat:@"%d,%d", x, y];
 }

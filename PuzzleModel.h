@@ -22,11 +22,15 @@
 @interface PuzzleModel : NSObject {
 	// dictionary with key 
 	NSMutableDictionary * coinPositions;
+	PuzzleModel * previousModel;
 }					
 
 
 // Initializes the puzzle and places the six coins in their starting positions
 - (id)init;
+
+// Initializes the puzzle (copy constructor)
+- (id)initWithPuzzle: (PuzzleModel *)inputModel;
 
 // Resets the position of coins to their starting positions
 - (void)resetPuzzle;
@@ -46,6 +50,12 @@
 // Moves a coin from position |start| to position |end|
 // Validation will be done to ensure that the move is legal
 - (void)moveCoinFromPosition: (Position *)start toPosition: (Position *)end;
+
+//getter
+- (PuzzleModel *)previousModel;
+
+//toString
+-(NSString *)description;
 
 //
 // --- I think the following methods can be made private.  Will know when I hook up client code

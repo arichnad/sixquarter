@@ -74,7 +74,7 @@
 	[view setEditable:FALSE];
 	[view setEnabled:FALSE];
 	
-	[coinViews setObject:view forKey:[Position toStringForX:x Y:y]];
+	[coinViews setObject:view forKey:[Position descriptionForX:x Y:y]];
 	
 	return view;
 	
@@ -99,10 +99,10 @@
 -(void)moveCoinFromPosition: (Position *)fromPosition To: (Position *)toPosition;
 {
 	// Get the coin view at the old location (remove from the dictionary)
-	NSImageView *coinView = [coinViews objectForKey:[fromPosition toString]];
+	NSImageView *coinView = [coinViews objectForKey:[fromPosition description]];
 
 	if (coinView == nil) {
-		NSLog(@"moveCoinFromX:Y:toX:Y: could not find the coin at %@", [fromPosition toString]);
+		NSLog(@"moveCoinFromX:Y:toX:Y: could not find the coin at %@", [fromPosition description]);
 		return;
 	}
 	
@@ -110,10 +110,10 @@
 	[[coinView animator] setFrame:[self createRectForCoinAtX: toPosition.x Y: toPosition.y]];
 	
 	// remove the coinView from the dictionary under the old key
-	[coinViews removeObjectForKey:[fromPosition toString]];
+	[coinViews removeObjectForKey:[fromPosition description]];
 	
 	// Place into the dictionary
-	[coinViews setObject:coinView forKey:[toPosition toString]];
+	[coinViews setObject:coinView forKey:[toPosition description]];
 	
 	[self needsDisplay];
 	
@@ -222,14 +222,14 @@
 
 -(void)addMarkerAtPosition: (Position *)puzzlePosition
 {
-	[legalMoves setObject:puzzlePosition forKey:[puzzlePosition toString]];
+	[legalMoves setObject:puzzlePosition forKey:[puzzlePosition description]];
 	[self setNeedsDisplay:TRUE];
 	
 }
 
 -(void)removeMarkerAtPosition: (Position *)puzzlePosition
 {
-	[legalMoves removeObjectForKey:[puzzlePosition toString]];
+	[legalMoves removeObjectForKey:[puzzlePosition description]];
 	[self setNeedsDisplay:TRUE];
 }
 
